@@ -16,6 +16,8 @@
     - gcc
     - ntp
     - wget
+    - curl
+    - unzip
 
 - name: Ensure pip is up-to-date
   command: pip install --upgrade pip
@@ -39,28 +41,28 @@
 - name: Start ntp service
   service: name=ntp enabled=yes state=started
 
-##lets encrypt stuff: https://letsencrypt.readthedocs.org/en/latest/using.html
+##LETS ENCRYPT STUFF########################################
+##: https://letsencrypt.readthedocs.org/en/latest/using.html
 - name: Install letsencrypt pre-requisites
   apt: pkg={{ item }} state=present
   with_items:
     - swig
-    - Augeas
 
 - name: git clone letsencrypt repo
-  git: >
-    repo={{ LETSENCRYPT_REPO }} 
-    dest=/tmp
-    version=master
-    accept_hostkey=yes
+  command: wget --directory-prefix=/tmp --no-clobber --continue https://github.com/letsencrypt/lets-encrypt-preview/archive/master.zip chdir=/tmp
+
+- name: unzip letsencrypt
+  command: unzip -n /tmp/master.zip -d /tmp chdir=/tmp
+
+- name: rm .zip files from /tmp
+  command: sudo rm -rf *.zip* chdir=/tmp
 
 - name: install letsencrypt client
-  command: sudo ./bootstrap/ubuntu.sh chdir=/tmp
+  command: ./bootstrap/ubuntu.sh chdir=/tmp/lets-encrypt-preview-master
 
 - name: install letsencrypt client requirements
-  pip: >
-    requirements=/tmp/requirements.txt
-    virtualenv={{ APP_VIRTUALENV }}
-  sudo: yes
+  command: sudo pip install -r requirements.txt chdir=/tmp/lets-encrypt-preview-master
+
 
 #usng the client:
 #>> ./venv/bin/letsencrypt --help

@@ -58,7 +58,7 @@
 - name: start the nginx service
   service: name=nginx state=started enabled=yes
 
-- name: Create nginx site configuration
+- name: Create lets_encrypt_demo nginx site configuration
   template: src=lets_encrypt_demo.nginx.site.j2
             dest=/etc/nginx/sites-available/{{ APP_NAME }}
   notify: 

@@ -18,7 +18,6 @@ reload:
 
 run3:
 	@sudo killall -9 supervisord | echo 
-	@sudo killall -9 nginx | echo
 	@sudo killall -9 gunicorn | echo
 	@python manage.py validate --settings=settings.development &
 	@python manage.py collectstatic --noinput --settings=settings.development &
@@ -27,6 +26,6 @@ run3:
 	@export DJANGO_SETTINGS_MODULE="settings.development" & \
 	authbind /home/vagrant/.virtualenvs/lets_encrypt_demo/bin/gunicorn wsgi:application \
     --workers=3 \
-    --bind="0.0.0.0:80" \
+    --bind="0.0.0.0:3000" \
     --log-level debug \
     --reload
