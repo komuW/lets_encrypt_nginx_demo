@@ -1,0 +1,15 @@
+---
+- {hosts: all, sudo: yes, roles: [ ansible-role-apt-sources ], tags: [apt_sources] }
+
+- { hosts: all, sudo: yes, roles: [ ansible-locale ], tags: [ locale ] }
+
+- { hosts: app_servers, sudo: yes, roles: [ nginx-role ], tags: [ bennojoy.nginx ]}
+
+- hosts: all
+  gather_facts: no
+  sudo: yes
+
+  tasks:
+    - include: start.yml
+      sudo: yes
+

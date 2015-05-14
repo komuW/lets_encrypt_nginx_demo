@@ -1,0 +1,10 @@
+---
+
+env:
+ RUNLEVEL: 1
+
+ubuntu_pkg:
+  - python-selinux
+  - nginx
+
+  
