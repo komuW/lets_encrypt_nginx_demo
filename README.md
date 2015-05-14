@@ -3,6 +3,9 @@
 `https://github.com/letsencrypt/lets-encrypt-preview`
 `https://letsencrypt.readthedocs.org`
 
+# NB
+This doesnt work yet!
+
 # pre-requisites
 *  [vagrant](https://www.vagrantup.com)
 
