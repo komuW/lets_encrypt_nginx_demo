@@ -60,10 +60,6 @@
 - name: install letsencrypt client
   command: ./bootstrap/ubuntu.sh chdir=/tmp/lets-encrypt-preview-master
 
-- name: install letsencrypt client requirements
-  command: sudo pip install -r requirements.txt chdir=/tmp/lets-encrypt-preview-master
-
-
 #usng the client:
 #>> ./venv/bin/letsencrypt --help
 #>> sudo letsencrypt -d www.example.org run --help
