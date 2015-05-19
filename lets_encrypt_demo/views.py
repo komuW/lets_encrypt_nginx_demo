@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic.base import View
 
 
 class HomeView(View):
@@ -6,12 +7,10 @@ class HomeView(View):
 
     def get(self, request):
 
-            template_vals = {
-            'encrypted': "Yo, I'm encrypted"
-            }
+        template_vals = {
+        'encrypted': "Yo, I'm encrypted"
+        }
 
 
-            return render(request, self.template, template_vals)
-
-        return response
+        return render(request, self.template, template_vals)
 

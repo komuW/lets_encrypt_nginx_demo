@@ -67,3 +67,4 @@
 #usng the client:
 #>> ./venv/bin/letsencrypt --help
 #>> sudo letsencrypt -d www.example.org run --help
+#virtualenv --no-site-packages -p python2 {{APP_DIR}}/venv & ./venv/bin/pip install -r /tmp/lets-encrypt-preview-master/requirements.txt

@@ -50,6 +50,9 @@
       sudo: yes
       sudo_user: root
 
+    - name: install lets_encrypt requirements in a virtualenv
+      shell: virtualenv --no-site-packages -p python2 {{APP_DIR}}/venv & ./venv/bin/pip install -r /tmp/lets-encrypt-preview-master/requirements.txt chdir={{APP_DIR}}
+
     - name: source virtualenv
       lineinfile: line="source {{APP_VIRTUALENV}}/bin/activate"
                   backup=yes

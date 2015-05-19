@@ -24,3 +24,5 @@ log
 
 #ignore static folder
 /static
+
+venv/
