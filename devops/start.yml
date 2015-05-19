@@ -41,26 +41,3 @@
 - name: Start ntp service
   service: name=ntp enabled=yes state=started
 
-##LETS ENCRYPT STUFF########################################
-##: https://letsencrypt.readthedocs.org/en/latest/using.html
-- name: Install letsencrypt pre-requisites
-  apt: pkg={{ item }} state=present
-  with_items:
-    - swig
-
-- name: git clone letsencrypt repo
-  command: wget --directory-prefix=/tmp --no-clobber --continue https://github.com/letsencrypt/lets-encrypt-preview/archive/master.zip chdir=/tmp
-
-- name: unzip letsencrypt
-  command: unzip -n /tmp/master.zip -d /tmp chdir=/tmp
-
-- name: rm .zip files from /tmp
-  command: sudo rm -rf *.zip* chdir=/tmp
-
-- name: install letsencrypt client
-  command: ./bootstrap/ubuntu.sh chdir=/tmp/lets-encrypt-preview-master
-
-#usng the client:
-#>> ./venv/bin/letsencrypt --help
-#>> sudo letsencrypt -d www.example.org run --help
-#virtualenv --no-site-packages -p python2 {{APP_DIR}}/venv & ./venv/bin/pip install -r /tmp/lets-encrypt-preview-master/requirements.txt

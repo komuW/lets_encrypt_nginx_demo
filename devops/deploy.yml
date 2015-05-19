@@ -50,14 +50,6 @@
       sudo: yes
       sudo_user: root
 
-    ####lets encrypt stuff####
-    - name: create lets_encrypt virtualenv
-      shell: virtualenv --no-site-packages -p python2 {{APP_DIR}}/venv
-
-    - name: install lets_encrypt requirements
-      shell: sudo /vagrant/venv/bin/pip install -r requirements.txt chdir=/tmp/lets-encrypt-preview-master
-    ######
-
     - name: source virtualenv
       lineinfile: line="source {{APP_VIRTUALENV}}/bin/activate"
                   backup=yes
