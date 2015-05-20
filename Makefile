@@ -29,3 +29,9 @@ run3:
     --bind="0.0.0.0:3000" \
     --log-level debug \
     --reload
+
+configure:
+	@ansible-playbook devops/site.yml -i devops/inventory/staging --limit=all
+
+deploy:
+	@ansible-playbook devops/deploy.yml -i devops/inventory/staging --limit=all 

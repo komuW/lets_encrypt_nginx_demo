@@ -1,0 +1,11 @@
+lets_encrypt ansible_ssh_host=46.101.168.7 ansible_ssh_user=root
+
+[app_servers]
+lets_encrypt
+
+[db_servers]
+lets_encrypt
+
+[staging:children]
+app_servers
+db_servers
