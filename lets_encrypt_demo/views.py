@@ -8,7 +8,7 @@ class HomeView(View):
     def get(self, request):
 
         template_vals = {
-        'encrypted': "Yo, I'm encrypted"
+        'encrypted': "Yo, I'm not encrypted"
         }
 
 
