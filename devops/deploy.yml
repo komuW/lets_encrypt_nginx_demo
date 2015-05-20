@@ -5,6 +5,14 @@
 
   tasks:
 
+    - name: Check out code
+      git: >
+        repo={{ LETSENCRYPT_REPO }}
+        dest={{ APP_DIR }}
+        version={{ APP_VERSION }}
+        accept_hostkey=yes
+      when: APP_ENVIRONMENT != "development"
+      notify: restart app
 
     - name: Ensure runtime directories
       file: path={{ APP_DIR }}/{{ item }} state=directory

@@ -10,3 +10,5 @@ GUNICORN_PORT: 3000
 APP_STATIC_DIR: "{{ APP_DIR }}/static"
 
 LETSENCRYPT_REPO: git@github.com:letsencrypt/lets-encrypt-preview.git
+
+APP_VERSION: dev

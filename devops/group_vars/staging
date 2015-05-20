@@ -1,0 +1,5 @@
+---
+APP_ENVIRONMENT: staging
+
+local_env:
+    DJANGO_SETTINGS_MODULE: settings.{{ APP_ENVIRONMENT }}

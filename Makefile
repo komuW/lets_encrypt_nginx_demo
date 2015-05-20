@@ -33,5 +33,6 @@ run3:
 configure:
 	@ansible-playbook devops/site.yml -i devops/inventory/staging --limit=all
 
+version=dev
 deploy:
-	@ansible-playbook devops/deploy.yml -i devops/inventory/staging --limit=all 
+	@ansible-playbook devops/deploy.yml -i devops/inventory/staging -e 'APP_VERSION=$(version)' --limit=all 
