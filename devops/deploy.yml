@@ -28,7 +28,7 @@
         - pip
 
     - name: change ssl dir ownership(nginx)
-      shell: sudo chown -R {{APP_USER}}:root {{APP_DIR}}/ssl-stuff
+      shell: sudo chown -R {{APP_USER}}:www-data {{APP_DIR}}/ssl
 
     - name: Sync and migrate DB
       django_manage: >
