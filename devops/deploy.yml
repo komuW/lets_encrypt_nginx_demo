@@ -30,6 +30,30 @@
     - name: change ssl dir ownership(nginx)
       shell: sudo chown -R {{APP_USER}}:www-data {{APP_DIR}}/ssl
 
+
+
+    - name: copy certificate files
+      shell: sudo cp {{ item }} /etc/ssl/certs
+      with_items:
+        - "{{ APP_DIR }}/ssl/onestep.crt"
+      sudo: yes
+
+    - name: copy ssl key file
+      shell: sudo cp {{ APP_DIR }}/ssl/onestep.key /etc/ssl/private
+      sudo: yes
+
+    - name: copy CA to /usr/share/CAs
+      shell: sudo cp {{ item }} /usr/share/ca-certificates
+      with_items:
+        - "{{ APP_DIR }}/ssl/wosign_server.crt"
+      sudo: yes
+
+    - name: Install the CA certs
+      command: sudo update-ca-certificates
+      sudo: yes
+
+
+
     - name: Sync and migrate DB
       django_manage: >
         app_path={{ APP_DIR }} 
