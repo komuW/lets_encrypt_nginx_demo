@@ -27,6 +27,9 @@
       tags:
         - pip
 
+    - name: change ssl dir ownership(nginx)
+      shell: sudo chown -R {{APP_USER}}:root {{APP_DIR}}/ssl-stuff
+
     - name: Sync and migrate DB
       django_manage: >
         app_path={{ APP_DIR }} 

@@ -14,6 +14,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box_url = "http://files.vagrantup.com/precise32.box"
 
   config.vm.network :forwarded_port, guest: 80, host: 8500
+  config.vm.network :forwarded_port, guest: 443, host: 8700
   config.ssh.forward_agent = true
 
   # Share devops folder with guest VM. 
