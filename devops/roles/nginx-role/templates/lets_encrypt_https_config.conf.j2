@@ -16,8 +16,11 @@ server {
     listen {{ HTTPS_APP_PORT }} ssl;
 
     # certs sent to the client in SERVER HELLO are concatenated in ssl_certificate
-    ssl_certificate {{APP_DIR}}/ssl-stuff/wosign_server.crt;
-    ssl_certificate_key {{APP_DIR}}/ssl-stuff/wosign_server.key;
+    #ssl_certificate {{APP_DIR}}/ssl-stuff/wosign_server.crt;
+    #ssl_certificate_key {{APP_DIR}}/ssl-stuff/wosign_server.key;
+
+    ssl_certificate {{APP_DIR}}/ssl-stuff/cool.cer
+    ssl_certificate_key {{APP_DIR}}/ssl-stuff/server.key
     ssl_session_timeout 1d;
     ssl_session_cache shared:SSL:50m;
 
