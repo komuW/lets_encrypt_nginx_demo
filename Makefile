@@ -36,3 +36,13 @@ configure:
 version=dev
 deploy:
 	@ansible-playbook devops/deploy.yml -i devops/inventory/staging -e 'APP_VERSION=$(version)' --limit=all 
+
+
+run2:
+	@sudo killall -9 supervisord | echo 
+	@sudo killall -9 gunicorn | echo
+	@python manage.py validate --settings=settings.development &
+	@python manage.py collectstatic --noinput --settings=settings.development &
+	@python manage.py syncdb --noinput --settings=settings.development &
+	@python manage.py migrate --settings=settings.development &
+	@@authbind --deep python manage.py runserver 0.0.0.0:80 --settings=settings.development
