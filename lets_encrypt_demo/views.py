@@ -14,3 +14,11 @@ class HomeView(View):
 
         return render(request, self.template, template_vals)
 
+
+class VerifyWowsign(View):
+    template = 'haijachukuliwa.tk.html'
+
+    def get(self, request):
+
+        return render(request, self.template)
+

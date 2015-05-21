@@ -3,7 +3,7 @@ from django.conf.urls import patterns, include, url
 
 from django.contrib import admin
 
-from lets_encrypt_demo.views import HomeView
+from lets_encrypt_demo.views import HomeView, VerifyWowsign
 
 
 admin.autodiscover()
@@ -16,6 +16,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     #url(r'^$', include(admin.site.urls)),
     url(r'^$', HomeView.as_view(), name='home'),
+    url(r'^haijachukuliwa.tk.html/?$', VerifyWowsign.as_view(), name='verifywowsign'),
 )
 
 
