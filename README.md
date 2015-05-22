@@ -55,7 +55,7 @@ https://wiki.mozilla.org/Security/Server_Side_TLS
     """ - https://wiki.mozilla.org/Security/Server_Side_TLS`        
 
 - There are 3 recommended configurations         
-Configuration          Oldest compatible client       
+Configuration and its Oldest compatible client:           
   - Modern                - Firefox 27, Chrome 22, IE 11, Opera 14, Safari 7, Android 4.4, Java 8        
   - Intermediate          - Firefox 1, Chrome 1, IE 7, Opera 5, Safari 1, Windows XP IE8, Android 2.3, Java 7 (mostly WinXP)        
   - Old                   - Windows XP IE6, Java 6             
