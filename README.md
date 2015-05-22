@@ -80,10 +80,10 @@ Configuration          Oldest compatible client
   `.... TLS SNI support enabled ....`           
 
 # How to create certificate.             
-#NB: dont run any of this commands in a vagrant env(do it locally.)
+     NB: dont run any of this commands in a vagrant env(do it locally.)
 1. Generate a key that will be later used to generate the CSR cert          
 `$ sudo openssl genrsa -des3 -out server.key 2048`              
-  #u'll be asked for a passphrase #ideally atleast 8chars (by default it accepts 4chars and above)         
+  u'll be asked for a passphrase, ideally atleast 8chars (by default it accepts 4chars and above)         
 
 next, generate the key without a passphrase(to help in running nginx in daemon)           
 `$ sudo openssl rsa -in server.key -out server.key.insecure `              
@@ -93,15 +93,15 @@ then, rename the keys
 
 2. create the CSR            
 `$ sudo openssl req -new -key server.key -out server.csr `            
-  #u'll be prompted for passphrase             
-  #then other prompts follow, important one is one requesting for Common Name/server FQDN/YOUR name: enter domain name (or ip address)         
+  u'll be prompted for passphrase             
+  then other prompts follow, important one is one requesting for Common Name/server FQDN/YOUR name: enter domain name (or ip address)         
 
 3. You can now submit this CSR(server.csr) file to a CA for processing. The CA will use this CSR file and issue the certificate
  Alternatively; u can create self-signed certificate using this CSR.                
 
 4. create a self-signed cert
 `$ sudo openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt`              
-#u'll be prompted for passphrase         
+ u'll be prompted for passphrase         
  
 5. Installing the Certificate           
 You can install the key file server.key and certificate file server.crt, or the certificate file issued by your CA, by running following commands at a terminal prompt:         
@@ -109,7 +109,7 @@ You can install the key file server.key and certificate file server.crt, or the 
 `$ sudo cp server.key /etc/ssl/private`            
 - then configure ua webserver(nginx etc)             
 `"""
-    #u can also create the SSL key and certificate files in one command:
+    u can also create the SSL key and certificate files in one command:
     $ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt
 
     - req: specifies that we want to use X.509 certificate signing request (CSR) management
