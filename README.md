@@ -109,23 +109,23 @@ You can install the key file server.key and certificate file server.crt, or the 
 `$ sudo cp server.key /etc/ssl/private`            
 - then configure ua webserver(nginx etc)             
 `"""
-    u can also create the SSL key and certificate files in one command:
-    $ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt
+    u can also create the SSL key and certificate files in one command:             
+    `$ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt`
 
-    - req: specifies that we want to use X.509 certificate signing request (CSR) management
-    - -x509: modify prev subcommand, sayin we want to make a self-signed certificate instead of generating a certificate signing request
-    - -nodes: This tells OpenSSL to skip the option to secure our certificate with a passphrase
-    - -days 365: validity in days
+    - req: specifies that we want to use X.509 certificate signing request (CSR) management            
+    - -x509: modify prev subcommand, sayin we want to make a self-signed certificate instead of generating a certificate signing request                   
+    - -nodes: This tells OpenSSL to skip the option to secure our certificate with a passphrase         
+    - -days 365: validity in days           
     - -newkey rsa:2048: we want to generate a new certificate and a new key at the same time.
-        We did not create the key that is required to sign the certificate in a previous step
-    - keyout: location where to place generated key
-    - -out: This tells OpenSSL where to place the certificate that we are creating.
+        We did not create the key that is required to sign the certificate in a previous step          
+    - keyout: location where to place generated key           
+    - -out: This tells OpenSSL where to place the certificate that we are creating.            
 
     - the command above will issue u with prompts which u r supposed to respond to
-         The most important one is one requesting Common Name (e.g. server FQDN or YOUR name): enter ua domain name here (or IP address)
+         The most important one is one requesting Common Name (e.g. server FQDN or YOUR name): enter ua domain name here (or IP address)            
 
-    - configure nginx
-        ssl_certificate /etc/nginx/ssl/nginx.crt;
-        ssl_certificate_key /etc/nginx/ssl/nginx.key;
-    $ sudo service nginx restart
+    - configure nginx            
+        ssl_certificate /etc/nginx/ssl/nginx.crt;           
+        ssl_certificate_key /etc/nginx/ssl/nginx.key;            
+    `$ sudo service nginx restart`
 """`
