@@ -5,6 +5,14 @@
 
   tasks:
 
+    - name: Check out code
+      git: >
+        repo={{ LETSENCRYPT_REPO }}
+        dest={{ APP_DIR }}
+        version={{ APP_VERSION }}
+        accept_hostkey=yes
+      when: APP_ENVIRONMENT != "development"
+      notify: restart app
 
     - name: Ensure runtime directories
       file: path={{ APP_DIR }}/{{ item }} state=directory
@@ -18,6 +26,9 @@
       sudo: yes 
       tags:
         - pip
+
+    - name: change ssl dir ownership(nginx)
+      shell: sudo chown -R {{APP_USER}}:www-data {{APP_DIR}}/ssl
 
     - name: Sync and migrate DB
       django_manage: >
@@ -49,14 +60,6 @@
       command: supervisord -c {{ APP_DIR }}/supervisord.conf
       sudo: yes
       sudo_user: root
-
-    ####lets encrypt stuff####
-    - name: create lets_encrypt virtualenv
-      shell: virtualenv --no-site-packages -p python2 {{APP_DIR}}/venv
-
-    - name: install lets_encrypt requirements
-      shell: sudo /vagrant/venv/bin/pip install -r requirements.txt chdir=/tmp/lets-encrypt-preview-master
-    ######
 
     - name: source virtualenv
       lineinfile: line="source {{APP_VIRTUALENV}}/bin/activate"

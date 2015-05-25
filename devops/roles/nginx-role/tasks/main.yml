@@ -12,21 +12,21 @@
     - "sites-enabled"
 
 ## update nginx
-- name: Install preliminary update nginx packages
-  apt: pkg={{ item }} state=present
-  with_items:
-    - python-software-properties
-    - software-properties-common
+# - name: Install preliminary update nginx packages
+#   apt: pkg={{ item }} state=present
+#   with_items:
+#     - python-software-properties
+#     - software-properties-common
 
-- name: add nginx stable ppa
-  shell: sudo add-apt-repository -y ppa:nginx/stable
+# - name: add nginx stable ppa
+#   shell: sudo add-apt-repository -y ppa:nginx/stable
 
-- name: update system
-  shell: sudo apt-get update
+# - name: update system
+#   shell: sudo apt-get update
 
-- name: install newer nginx
-  shell: sudo apt-get -y install nginx
-  notify: restart nginx
+# - name: install newer nginx
+#   shell: sudo apt-get -y install nginx
+#   notify: restart nginx
 ## end update
 
 - name: Copy the nginx configuration file 
@@ -52,16 +52,26 @@
   file: path=/etc/nginx/sites-enabled/{{ item['server']['file_name'] }} state=link src=/etc/nginx/sites-available/{{ item['server']['file_name'] }}
   with_items: nginx_sites
   when: nginx_sites|lower != 'none'
-  notify: 
+  notify:
    - reload nginx
 
 - name: start the nginx service
   service: name=nginx state=started enabled=yes
 
+#old nginx conf without https
+# - name: Create lets_encrypt_demo nginx site configuration
+#   template: src=lets_encrypt_demo.nginx.site.j2
+#             dest=/etc/nginx/sites-available/{{ APP_NAME }}
+#   notify:
+#     - reload nginx
+#   tags:
+#     - nginx_conf
+
+#new nginx conf with https(wosign signed certs)
 - name: Create lets_encrypt_demo nginx site configuration
-  template: src=lets_encrypt_demo.nginx.site.j2
+  template: src=lets_encrypt_https_config.conf.j2
             dest=/etc/nginx/sites-available/{{ APP_NAME }}
-  notify: 
+  notify:
     - reload nginx
   tags:
     - nginx_conf

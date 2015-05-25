@@ -8,9 +8,17 @@ class HomeView(View):
     def get(self, request):
 
         template_vals = {
-        'encrypted': "Yo, I'm encrypted"
+        'encrypted': "Yo, I'm now encrypted!!!!"
         }
 
 
         return render(request, self.template, template_vals)
+
+
+class VerifyWowsign(View):
+    template = 'haijachukuliwa.tk.html'
+
+    def get(self, request):
+
+        return render(request, self.template)
 
