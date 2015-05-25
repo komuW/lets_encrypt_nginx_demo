@@ -1,6 +1,5 @@
 # A demo of setting up https for nginx
 
-* The https stuff is on the branch called feature/add-ssl-stuff
 
 # pre-requisites
 *  [vagrant](https://www.vagrantup.com)
