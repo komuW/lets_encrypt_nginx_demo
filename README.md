@@ -109,6 +109,9 @@ You can install the key file server.key and certificate file server.crt, or the 
 `$ sudo cp server.crt /etc/ssl/certs`
 `$ sudo cp server.key /etc/ssl/private`            
 - then configure ua webserver(nginx etc)             
+
+
+NB:           
 `"""
     u can also create the SSL key and certificate files in one command:             
     `$ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt`
