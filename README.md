@@ -113,8 +113,9 @@ You can install the key file server.key and certificate file server.crt, or the 
 
 NB:           
 `"""
-    u can also create the SSL key and certificate files in one command:             
-    `$ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt`
+    u can also create the SSL key and certificate files in one command:                 
+
+    $ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt
 
     - req: specifies that we want to use X.509 certificate signing request (CSR) management            
     - -x509: modify prev subcommand, sayin we want to make a self-signed certificate instead of generating a certificate signing request                   
@@ -131,5 +132,6 @@ NB:
     - configure nginx            
         ssl_certificate /etc/nginx/ssl/nginx.crt;           
         ssl_certificate_key /etc/nginx/ssl/nginx.key;            
-    `$ sudo service nginx restart`
+    
+    $ sudo service nginx restart
 """`
